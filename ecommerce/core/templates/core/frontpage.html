@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<header class="px-6 py-10 lg:py-20 bg-blue-500">
+    <div class="max-w-3xl mx-auto text-center">
+        <p class="mb-2 text-3xl lg:text-5xl text-white">Bienvenidos a VelvetIT®</p>
+        <p class="mb-10 text-white">Shako trabaja super temprano ⏱</p>
+        <a href="#" class="inline-block px-8 py-4 rounded-xl bg-white text-blue-500 hover:bg-gray-200">Empezar a comprar</a>
+    </div>
+</header>
+
+<div class="max-w-6xl mx-auto py-2 px-6 xxl:px-0">
+    <div class="products flex items-center flex-wrap">
+        {% for product in products %}
+            {% include 'product/partials/product_list_item.html' %}
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}
