@@ -16,6 +16,9 @@
                     <ul class="flex items-center space-x-4 font-bold">
                         <li><a href="{% url 'shop' %}">Shop</a></li>
                         <li><a href="#">About</a></li>
+                        {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% endif %}
                     </ul>
                 </div>
 
