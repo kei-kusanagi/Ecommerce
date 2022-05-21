@@ -33,6 +33,18 @@ def myaccount(request):
 
 @login_required
 def edit_myaccount(request):
+    if request.method == 'POST':
+        
+        user = request.user
+        user.username = request.POST.get('username')
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        user.email = request.POST.get('email')
+        user.save()
+
+        return redirect('myaccount')
+        
+
     return render(request, 'core/edit_myaccount.html')
 
 

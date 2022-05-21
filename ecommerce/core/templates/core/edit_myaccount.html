@@ -6,6 +6,7 @@
     <h1 class="mb-5 text-3xl">Edit account</h1>
 
     <form method="post" action="." class="space-y-3">
+        {% csrf_token %}
         <div>
             <label>Username</label>
             <input name="username" value="{{ request.user.username}}" type="text" class="w-full mt-2 py-4 px-6 bg-gray-300 rounded-xl">
