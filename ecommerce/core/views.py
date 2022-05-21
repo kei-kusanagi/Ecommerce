@@ -31,6 +31,9 @@ def signup(request):
 def myaccount(request):
     return render(request, 'core/myaccount.html')
 
+@login_required
+def edit_myaccount(request):
+    return render(request, 'core/edit_myaccount.html')
 
 
 def shop(request):
