@@ -34,6 +34,11 @@ LOGIN_URL = '/login/'
 SESSION_COOKIE_AGE = 86400
 CART_SESSION_ID = 'cart'
 
+from decouple import config
+
+STRIPE_API_KEY_PUBLISHABLE = config('STRIPE_API_KEY_PUBLISHABLE')
+STRIPE_API_KEY_HIDDEN = config('STRIPE_API_KEY_HIDDEN')
+
 # Application definition
 
 INSTALLED_APPS = [
