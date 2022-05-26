@@ -42,7 +42,7 @@
 
             {% if form.errors %}
                 {% for field in form %}
-                    {% for error in field.erors %}
+                    {% for error in field.errors %}
                         <div class="p-6 bg-red-200 text-red-800 rounded-xl">
                             <p>{{ error|escape }}</p>
                         </div>
