@@ -64,4 +64,6 @@ def start_order(request):
 
         item = OrderItem.objects.create(order=order, product=product, price=price, quantity=quantity)
 
+    cart.clear()
+
     return JsonResponse({'session': session, 'order': payment_intent})
