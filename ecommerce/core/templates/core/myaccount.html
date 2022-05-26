@@ -1,9 +1,11 @@
 {% extends 'core/base.html' %}
-{% block title %}My account{% endblock %}
-{% block content %}
 
+{% block title %}My account{% endblock %}
+
+{% block content %}
 <div class="max-w-lg mx-auto p-6">
     <h1 class="mb-5 text-3xl">My account</h1>
+
     <div class="mb-6">
         <strong>Name:</strong>{{ request.user.get_full_name }}<br>
         <strong>Username:</strong>{{ request.user.username }}<br>
@@ -13,18 +15,22 @@
     </div>
 
     <hr>
+
     <h2 class="my-6 text-xl">My orders</h2>
+
     {% for order in request.user.orders.all %}
         <div class="w-full mb-6 p-6 flex flex-wrap bg-blue-300 rounded-xl">
             <div class="mb-6 flex justify-between">
                 <a href="#">Order id: {{ prder.id }}</a>
             </div>
+
             <div class="mb-6 w-full">
                 {% for item in order.items.all %}
                 <div class="product mb-6 flex pr-6">
                     <a href="#" class="w-1/4">
                         <img class="hover:shadow-lg rounded-xl" src="{{ item.product.get_thumbnail }}">
                     </a>
+
                     <div class="w-3/4 pl-6">
                         <div class="flex justify-between">
                             <a href="#" class="text-lg">{{ item.product.name }}</a>
@@ -47,9 +53,7 @@
                 <p class="text-lg">Total: $199</p>
 
             </div>
-
         </div>
     {% endfor %}
 </div>
-
 {% endblock %}

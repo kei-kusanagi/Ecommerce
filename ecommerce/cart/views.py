@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-# Create your views here.
 from .cart import Cart
 
 from product.models import Product
@@ -14,11 +13,6 @@ def add_to_cart(request, product_id):
     return render(request, 'cart/menu_cart.html')
 
 def cart(request):
-
-    # cart = Cart(request)
-    # print(cart)
-    # for item in cart:
-    #     print(item)
     return render(request, 'cart/cart.html')
 
 def update_cart(request, product_id, action):
@@ -28,6 +22,7 @@ def update_cart(request, product_id, action):
         cart.add(product_id, 1, True)
     else:
         cart.add(product_id, -1, True)
+    
     product = Product.objects.get(pk=product_id)
     quantity = cart.get_item(product_id)
     
@@ -38,9 +33,9 @@ def update_cart(request, product_id, action):
             'product': {
                 'id': product.id,
                 'name': product.name,
-                'image':product.image,
+                'image': product.image,
                 'get_thumbnail': product.get_thumbnail(),
-                'price':product.price,
+                'price': product.price,
             },
             'total_price': (quantity * product.price) / 100,
             'quantity': quantity,
@@ -63,4 +58,3 @@ def hx_menu_cart(request):
 
 def hx_cart_total(request):
     return render(request, 'cart/partials/cart_total.html')
-    

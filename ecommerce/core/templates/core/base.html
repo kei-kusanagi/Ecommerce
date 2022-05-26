@@ -17,8 +17,9 @@
                     <ul class="flex items-center space-x-4 font-bold">
                         <li><a href="{% url 'shop' %}">Shop</a></li>
                         <li><a href="#">About</a></li>
+
                         {% if request.user.is_authenticated %}
-                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                            <li><a href="{% url 'logout' %}">Log out</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -29,6 +30,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </a>
+
                     <div 
                         hx-get="{% url 'hx_menu_cart' %}"
                         hx-trigger="update-menu-cart from:body"
@@ -36,18 +38,14 @@
                     >
                         {% include 'cart/menu_cart.html' %}
                     </div>
-
                 </div>
-
             </div>
         </nav>
-
 
         <main>
             {% block content %}
             {% endblock %}
         </main>
-
 
         <footer class="bg-sky-200">
             <div class="max-w-6xl mx-auto py-10 px-6 xl:px-0 md:flex justify-between">
@@ -70,6 +68,8 @@
         </footer>
 
         <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+        {% block scripts %}
+        {% endblock %}
 
     </body>
 </html>

@@ -1,16 +1,18 @@
+from itertools import product
 from django.contrib.auth.models import User
 from django.db import models
 
 from product.models import Product
 
-# Create your models here.
 class Order(models.Model):
     ORDERED = 'ordered'
     SHIPPED = 'shipped'
+
     STATUS_CHOICES = (
         (ORDERED, 'Ordered'),
         (SHIPPED, 'Shipped')
     )
+
     user = models.ForeignKey(User, related_name='orders', blank=True, null=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
