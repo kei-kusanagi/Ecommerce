@@ -29,19 +29,15 @@ class Order(models.Model):
 
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=ORDERED)
 
-<<<<<<< HEAD
     class Meta:
         ordering = ('-created_at',)
-
+    
     def get_total_price(self):
         if self.paid_amount:
             return self.paid_amount / 100
         
         return 0
-        
 
-=======
->>>>>>> parent of 5ceb7e4 (change ordering for orders)
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='items', on_delete=models.CASCADE)

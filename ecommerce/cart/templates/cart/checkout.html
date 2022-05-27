@@ -3,12 +3,12 @@
 {% block title %}Checkout{% endblock %}
 
 {% block content %}
-<div class="max-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xxl:px-0">
+<div class="max-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0">
     <div class="products w-full lg:w-3/4">
         <h1 class="mb-5 text-3xl">Checkout</h1>
 
         <div class="w-full md:pr-6">
-            <div class="mb-6 p-6 bg-gray-300 rounded-xl">
+            <div class="mb-6 p-6 bg-gray-100 rounded-xl">
                 <h2 class="mb-5 uppercase text-lg">Shipping information</h2>
 
                 <div class="flex space-x-6">
@@ -35,13 +35,13 @@
                     </div>
 
                     <div class="w-1/2 mb-4">
-                        <label class="inline-block mb-2">City</label>
+                        <label class="inline-block mb-2">City/Place</label>
                         <input name="place" type="text" class="w-full p-5 rounded-xl">
                     </div>
                 </div>
             </div>
 
-            <div class="mb-6 p-6 bg-gray-300 rounded-xl">
+            <div class="mb-6 p-6 bg-gray-100 rounded-xl">
                 <h2 class="mb-5 uppercase text-lg">Contact information</h2>
 
                 <div class="mb-4">
@@ -55,17 +55,12 @@
                 </div>
             </div>
 
-            <div class="mb-6 p-6 bg-gray-300 rounded-xl" id="errors">
-
-            </div>
-
-            <div class="mb-6 p-6 bg-gray-300 rounded-xl">
-                <h2 class="mb-5 uppercase text-lg">Payment information</h2>
+            <div class="mb-6 p-6 bg-gray-100 rounded-xl" id="errors">
             </div>
         </div>
     </div>
 
-    <div class="summary w-full md:w-1/4 p-6 bg-gray-300 rounded-xl mt-3">
+    <div class="summary w-full md:w-1/4 p-6 bg-gray-100 rounded-xl mt-3">
         <h2 class="uppercase text-lg mb-5">Summary</h2>
 
         <div class="mb-6 flex justify-between">
@@ -73,9 +68,9 @@
             <span>${{ cart.get_total_cost }}</span>
         </div>
 
-        <button 
+        <button
             onclick="buy(event)"
-            class="inline-block px-8 py-4 rounded-xl bg-blue-500 hover:bg-purple-700 text-white"
+            class="inline-block px-8 py-4 rounded-xl bg-purple-500 hover:bg-purple-700 text-white"
         >
             Confirm checkout
         </button>
@@ -121,12 +116,12 @@
 
         if (errors.length > 0) {
             let html = '<ul>';
+            
+            errors.forEach((error) => {
+                html += '<li>' + error + '</li>';
+            })
 
-                errors.forEach((error) => {
-                    html += '<li>' + error + '</li>';
-                })
-
-                el.innerHTML = html + '</ul>';
+            el.innerHTML = html + '</ul>';
         } else {
             el.innerHTML = '';
         }

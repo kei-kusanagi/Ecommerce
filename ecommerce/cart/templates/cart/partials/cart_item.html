@@ -3,7 +3,7 @@
         <a href="{% url 'product' item.product.slug %}" class="w-1/4">
             <img class="hover:shadow-lg rounded-xl" src="{{ item.product.get_thumbnail }}">
         </a>
-        
+
         <div class="w-3/4 pl-6">
             <div class="flex justify-between">
                 <a href="{% url 'product' item.product.slug %}" class="text-lg">{{ item.product.name }}</a>
@@ -15,7 +15,7 @@
 
             <div class="quantity mt-6 flex items-center space-x-4">
                 <a 
-                    class="p-3 bg-gray-300"
+                    class="p-3 bg-gray-100"
                     hx-get="{% url 'update_cart' item.product.id 'decrement' %}"
                     hx-target="#cart-item-{{ item.product.id }}"
                     hx-swap="outerHTML"
@@ -24,7 +24,7 @@
                 </a>
                 <span>{{ item.quantity }}</span>
                 <a 
-                    class="p-3 bg-gray-300"
+                    class="p-3 bg-gray-100"
                     hx-get="{% url 'update_cart' item.product.id 'increment' %}"
                     hx-target="#cart-item-{{ item.product.id }}"
                     hx-swap="outerHTML"

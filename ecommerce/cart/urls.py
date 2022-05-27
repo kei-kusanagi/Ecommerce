@@ -11,4 +11,3 @@ urlpatterns = [
     path('hx_menu_cart/', hx_menu_cart, name='hx_menu_cart'),
     path('hx_cart_total/', hx_cart_total, name='hx_cart_total'),
 ]
-    
