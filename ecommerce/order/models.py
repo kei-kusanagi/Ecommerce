@@ -20,6 +20,7 @@ class Order(models.Model):
     address = models.CharField(max_length=255)
     zipcode = models.CharField(max_length=255)
     place = models.CharField(max_length=255)
+    payment_intent = models.CharField(max_length=255, default="")
     phone = models.CharField(max_length=255)
 
     created_at = models.DateTimeField(auto_now_add=True)
