@@ -14,7 +14,7 @@ console.log('tailwindcss will scan ${contentPaths}');
 
 module.exports = {
     content: contentPaths,
-    darkMode: 'class',
+    darkMode: '',
     theme: {
         extend: {},
     },

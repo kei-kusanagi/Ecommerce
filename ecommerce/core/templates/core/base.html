@@ -9,16 +9,19 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>{% block title %}{% endblock %} | Nordic Homes</title>
+        <title>{% block title %}{% endblock %} | VelvetIT®</title>
     </head>
 
     <body>
-        <div class="dark">
-        <div class="bg-white dark:bg-purple-500"></div>
+        <div class="">
+            <button class="bg-red-500 dark:bg-green-500">
+                soy un boton
+            </button>
+        <div class="bg-white dark:bg-blue-500"></div>
         <nav class="border-b border-gray-300">
             <div class="flex items-center justify-between max-w-6xl px-6 py-2 mx-auto xl:px-0">
                 <div class="flex items-center space-x-6 menu-left">
-                    <a href="{% url 'frontpage' %}" class="py-4 text-lg font-semibold text-purple-500">Nordic Homes</a>
+                    <a href="{% url 'frontpage' %}" class="py-4 text-lg font-semibold text-blue-500">VelvetIT®</a>
 
                     <ul class="flex items-center space-x-4">
                         <li><a href="{% url 'shop' %}">Shop</a></li>
