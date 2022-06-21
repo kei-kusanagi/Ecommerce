@@ -1,20 +1,4 @@
-/*eslint no-unused-vars: "warn"*/
-
-// This is the scss entry file
-import "../styles/index.scss";
-import "../../../core/static/css/main.css";
-
-// We can import Bootstrap JS instead of the CDN link, if you do not use
-// Bootstrap, please feel free to remove it.
-import "bootstrap/dist/js/bootstrap.bundle";
-
-// We can import other JS file as we like
-import "../components/sidebar";
-
-window.document.addEventListener("DOMContentLoaded", function () {
-  window.console.log("dom ready 1");
-});
-
+import "../css/main.css";
 const switchToggle = document.querySelector('#switch-toggle');
 const prueba = document.querySelector('#prueba');
 const html = document.querySelector('html');
@@ -33,11 +17,11 @@ if (localDarkmode) {
 } else {
     html.classList.remove('dark');
 }
-function toggleTheme () {
+function toggleTheme (){
     isDarkmode = !isDarkmode;
     localStorage.setItem('isDarkmode', false);
     switchTheme();
-}
+};
 function switchTheme (){
     if (isDarkmode) {
         html.classList.add('dark');
@@ -59,5 +43,5 @@ function switchTheme (){
             switchToggle.innerHTML = lightIcon;
         }, 250);
     }
-}
+};
 switchTheme();

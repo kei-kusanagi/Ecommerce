@@ -5,7 +5,8 @@ const currentPath = Path.join(pwd, "../core/templates/**/*.html");
 
 // We can add current project paths here
 const projectPaths = [
-    currentPath
+    currentPath,
+    "../core/static/**/*",
     // add js file paths if you need
 ];
 
@@ -14,23 +15,9 @@ console.log('tailwindcss will scan ${contentPaths}');
 
 module.exports = {
     content: contentPaths,
-    darkMode: '',
+    darkMode: 'class',
     theme: {
         extend: {},
     },
     plugins: [],
 }
-
-// module.exports = {
-//   content: [
-//   './**/*.{html,js}',
-//   './../core/templates/**/*.{html,js}',
-//   '!./node_modules',
-//   '!./build',
-// ],
-  
-//   theme: {
-//     extend: {},
-//   },
-//   plugins: [],
-// }
