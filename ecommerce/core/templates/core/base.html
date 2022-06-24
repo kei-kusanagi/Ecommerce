@@ -1,8 +1,8 @@
-{% load static %}
+{% load webpack_loader static %}
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- <script src="https://cdn.tailwindcss.com"></script> -->
         <!-- CSS Tailwind -->
         <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
         <meta charset="UTF-8">
@@ -10,6 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <!-- <link rel="stylesheet" href="{% static 'css/main.min.css' %}"> -->
+        {% stylesheet_pack 'app' %}
         <title>{% block title %}{% endblock %} | VelvetIT®</title>
     </head>
 
@@ -56,8 +57,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                                 </svg>
                             </div>
-                        </button>  
-                        <script src="{% static 'js/main.js' %}" type="text/javascript"></script>
+                        </button>
                         <div class="px-4 py-4 m-10 bg-red-500 p10 rounded-xl dark:bg-red-900 dark:text-white text-center">Red</div>
                         <div class="px-4 py-4 m-10 bg-blue-500 p10 rounded-xl dark:bg-blue-900 dark:text-white text-center">Blue</div>
                         <div class="px-4 py-4 m-10 bg-green-500 p10 rounded-xl dark:bg-green-900 dark:text-white text-center">Green</div>
@@ -95,6 +95,8 @@
 
             <script src="https://unpkg.com/htmx.org@1.7.0"></script>
         </div>
+        {% javascript_pack 'app' %}
+        
         {% block scripts %}
         {% endblock %}
     </body>
