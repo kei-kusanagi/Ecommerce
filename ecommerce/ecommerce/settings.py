@@ -28,6 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '45bf38a7b2dc69'
+EMAIL_HOST_PASSWORD = '7f9ce15c907b1c'
+EMAIL_PORT = '2525'
+
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
@@ -56,7 +61,8 @@ INSTALLED_APPS = [
     'product',
     'order',
     'debug_toolbar',
-    'webpack_boilerplate',  
+    'webpack_boilerplate',
+    'contact',
 ]
 
 MIDDLEWARE = [
