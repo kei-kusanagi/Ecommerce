@@ -1,22 +1,17 @@
 /*eslint no-unused-vars: "warn"*/
 
 // This is the scss entry file
-import "../styles/index.scss";
-import "../../../core/static/css/main.css";
-
-// We can import Bootstrap JS instead of the CDN link, if you do not use
-// Bootstrap, please feel free to remove it.
-import "bootstrap/dist/js/bootstrap.bundle";
+import "../styles/index.css";
 
 // We can import other JS file as we like
 import "../components/sidebar";
 
 window.document.addEventListener("DOMContentLoaded", function () {
-  window.console.log("dom ready 1");
+    window.console.log("dom ready 1");
 });
 
+// Business logic to trigger dark mode.
 const switchToggle = document.querySelector('#switch-toggle');
-const prueba = document.querySelector('#prueba');
 const html = document.querySelector('html');
 let isDarkmode = false;
 const localDarkmode = JSON.parse(localStorage.getItem('isDarkmode'));
@@ -43,8 +38,6 @@ function switchTheme (){
         html.classList.add('dark');
         switchToggle.classList.remove('bg-yellow-500','-translate-x-2');
         switchToggle.classList.add('bg-gray-700','translate-x-full');
-        prueba.classList.remove('bg-red-500');
-        prueba.classList.add('dark:bg-green-500');
         setTimeout(() => {
             switchToggle.innerHTML = darkIcon;
         }, 250);
@@ -52,8 +45,6 @@ function switchTheme (){
         html.classList.remove('dark');
         switchToggle.classList.add('bg-yellow-500','-translate-x-2');
         switchToggle.classList.remove('bg-gray-700','translate-x-full');
-        prueba.classList.remove('dark:bg-green-500');
-        prueba.classList.add('bg-red-500');
         
         setTimeout(() => {
             switchToggle.innerHTML = lightIcon;
