@@ -17,6 +17,8 @@ asdf install nodejs lts-gallium
 # To install these dependencies from scratch for webpack + babel_loader + postcss + tailwind + etc
 # cd frontend
 # npm install --save-dev webpack webpack-cli webpack-dev-server babel-loader @babel/core @babel/preset-env style-loader css-loader postcss postcss-loader postcss-preset-env tailwindcss
+# o bien:
+(cd frontend && npm install --save-dev webpack webpack-cli webpack-dev-server babel-loader @babel/core @babel/preset-env style-loader css-loader postcss postcss-loader postcss-preset-env tailwindcss)
 # cd ../
 (cd frontend && npm install --save-dev)
 (cd frontend && npm run build)
