@@ -6,31 +6,31 @@
 
         <div class="w-3/4 pl-6">
             <div class="flex justify-between">
-                <a href="#" class="text-lg">{{ item.product.name }}</a>
+                <a href="#" class="text-lg dark:text-gray-300">{{ item.product.name }}</a>
 
-                <span class="mb-6 pt-1 text-gray-400">${{ item.total_price }}</span>
+                <span class="mb-6 pt-1 text-gray-400 dark:text-gray-300">${{ item.total_price }}</span>
             </div>
 
             <hr>
 
             <div class="quantity mt-6 flex items-center space-x-4">
-                <a 
-                    class="p-3 bg-gray-100"
+                <buton 
+                    class="px-4 bg-gray-400 rounded-xl"
                     hx-get="{% url 'update_cart' item.product.id 'decrement' %}"
                     hx-target="#cart-item-{{ item.product.id }}"
                     hx-swap="outerHTML"
                 >
                     -
-                </a>
-                <span>{{ item.quantity }}</span>
-                <a 
-                    class="p-3 bg-gray-100"
+                </buton>
+                <span class="px-4 text-gray-400 dark:text-gray-300">{{ item.quantity }}</span>
+                <buton 
+                    class="px-4 bg-gray-400 rounded-xl"
                     hx-get="{% url 'update_cart' item.product.id 'increment' %}"
                     hx-target="#cart-item-{{ item.product.id }}"
                     hx-swap="outerHTML"
                 >
                     +
-                </a>
+                </buton>
             </div>
         </div>
     </div>
