@@ -12,23 +12,23 @@
     </div>
 
     <div class="information w-full lg:w-2/5 lg:p-6">
-        <h1 class="text-2xl">{{ product.name }}</h1>
+        <h1 class="text-gray-800 dark:text-white text-2xl">{{ product.name }}</h1>
 
-        <p class="mt-1 text-gray-400">${{ product.get_display_price }}</p>
+        <p class="mt-1 text-gray-800 dark:text-white">${{ product.get_display_price }}</p>
 
         {% if product.get_rating > 0 %}
-            <p class="mt-1 text-gray-400">Rating: {{ product.get_rating }} / 6</p>
+            <p class="mt-1 text-gray-800 dark:text-white">Rating: {{ product.get_rating }} / 6</p>
         {% endif %}
 
         {% if product.description %}
-            <p class="mt-6 text-gray-700">
+            <p class="mt-6 text-gray-800 dark:text-white">
                 {{ product.description }}
             </p>
         {% endif %}
 
         <a 
             href="#" 
-            class="mt-6 inline-block px-8 py-4 rounded-xl bg-purple-500 text-white hover:bg-purple-700"
+            class="mt-6 inline-block px-8 py-4 rounded-xl bg-sky-500 text-white hover:bg-sky-700"
             hx-get="{% url 'add_to_cart' product.id %}"
             hx-target="#menu-cart-button"
             hx-swap="outerHTML"
@@ -37,11 +37,11 @@
         </a>
     </div>
 
-    <div class="w-full mt-6">
-        <h2 class="text-xl">Reviews</h2>
+    <div class="w-full mt-6 ">
+        <h2 class="text-xl text-gray-800 dark:text-white">Reviews</h2>
 
         {% if request.user.is_authenticated %}
-            <form method="post" action="." class="mt-6 mb-6 p-6 bg-gray-100 rounded-xl">
+            <form method="post" action="." class="mt-6 mb-6 p-6 text-gray-800 dark:text-white bg-gray-300 dark:bg-gray-700 rounded-xl">
                 {% csrf_token %}
 
                 <div>
@@ -58,17 +58,21 @@
 
                 <div>
                     <label>Comment</label><br>
-                    <textarea name="content"></textarea>
+                    <textarea 
+                        name="content"
+                        class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Write your review here..."
+
+                    ></textarea>
                 </div>
 
                 <div>
-                    <button>Submit</button>
+                    <button class="mt-3 inline-block px-4 py-2 rounded-xl bg-sky-500 text-white hover:bg-sky-700">Submit</button>
                 </div>
             </form>
         {% endif %}
 
         {% for review in product.reviews.all %}
-            <div class="px-4 py-6 bg-gray-100 rounded-xl mb-4">
+            <div class="px-4 py-6 text-gray-800 dark:text-white bg-gray-300 dark:bg-gray-700 rounded-xl mb-4">
                 <strong>Rating:</strong> {{ review.rating }}/6<br>
                 <strong>Date:</strong> {{ review.created_at|date:"Y-m-d" }}<br>
                 <strong>Comment:</strong><br>

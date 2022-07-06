@@ -11,8 +11,10 @@
         {% javascript_pack 'app' %}
         <title>{% block title %}{% endblock %} | VelvetIT®</title>
     </head>
+    
     <body class="">
-        <div class="bg-white dark:bg-gray-900 transition-colors duration-300 p-2 py-4">
+        <div class="bg-white dark:bg-gray-900">
+        <div class="transition-colors duration-300 p-2 py-4">
             <nav class="border-b border-gray-300">
                 <div class="text-blue-500 flex items-center justify-between max-w-6xl px-6 py-2 mx-auto xl:px-0">
                     <div class="flex items-center space-x-6 menu-left">
@@ -133,5 +135,6 @@
         {% endblock %}
         <script src="https://unpkg.com/htmx.org@1.7.0"></script>
         <script defer src="/static/js/initial.js"></script>
+    </div>
     </body>
 </html>
