@@ -11,16 +11,16 @@
         <strong>Username: </strong>{{ request.user.username }}<br>
         <strong>E-mail: </strong>{{ request.user.email }}<br>
 
-        <a href="{% url 'edit_myaccount' %}" class="inline-block mt-4 py-4 px-6 rounded-xl text-white bg-sky-500">Edit</a>
+        <a href="{% url 'edit_myaccount' %}" class="inline-block mt-4 py-4 px-6 rounded-xl text-white bg-sky-400 hover:bg-sky-600">Edit</a>
     </div>
 
     <hr>
 
-    <h2 class="my-6 text-xl">My orders</h2>
+    <h2 class="my-6 text-xl  dark:text-gray-400">My orders</h2>
 
     {% for order in request.user.orders.all %}
-        <div class="w-full mb-6 p-6 flex flex-wrap bg-gray-400 dark:bg-gray-100 rounded-xl">
-            <div class="mb-6 flex justify-between">
+        <div class="w-full mb-6 p-6 flex flex-wrap bg-gray-400 dark:bg-gray-200 rounded-xl">
+            <div class="mb-6 flex justify-between text-gray-200 dark:text-gray-700">
                 <a href="#">Order id: {{ order.id }}</a>
             </div>
 
@@ -31,16 +31,16 @@
                             <img class="hover:shadow-lg rounded-xl" src="{{ item.product.get_thumbnail }}">
                         </a>
 
-                        <div class="w-3/4 pl-6 text-gray-800 dark:text-white">
+                        <div class="w-3/4 pl-6">
                             <div class="flex justify-between">
-                                <a href="#" class="text-lg text-gray-800 dark:text-white">{{ item.product.name }}</a>
+                                <a href="#" class="text-lg text-gray-200 dark:text-gray-700">{{ item.product.name }}</a>
 
-                                <p class="mb-6 pt-1 text-gray-800 dark:text-white">${{ item.get_total_price }}</p>
+                                <p class="mb-6 pt-1 text-gray-200 dark:text-gray-700">${{ item.get_total_price }}</p>
                             </div>
 
                             <hr>
 
-                            <div class="mt-6 text-gray-800 dark:text-white">
+                            <div class="mt-6 text-gray-200 dark:text-gray-700">
                                 Quantity: {{ item.quantity }}
                             </div>
                         </div>
@@ -49,8 +49,8 @@
             </div>
 
             <div>
-                <p class="text-lg text-gray-800 dark:text-white">Date: {{ order.created_at }}</p>
-                <p class="text-lg text-gray-800 dark:text-white">Total: ${{ order.get_total_price }}</p>
+                <p class="text-lg text-gray-200 dark:text-gray-700">Date: {{ order.created_at }}</p>
+                <p class="text-lg text-gray-200 dark:text-gray-700">Total: ${{ order.get_total_price }}</p>
             </div>
         </div>
     {% endfor %}
