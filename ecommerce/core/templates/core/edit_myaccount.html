@@ -3,7 +3,7 @@
 {% block title %}Edit account{% endblock %}
 
 {% block content %}
-<div class="max-w-6xl mx-auto p-6">
+<div class="max-w-6xl mx-auto p-6 text-gray-800 dark:text-gray-300">
     <h1 class="mb-5 text-3xl">Edit account</h1>
 
     <form method="post" action="." class="space-y-3">
@@ -11,26 +11,26 @@
         
         <div>
             <label>First name</label>
-            <input name="first_name" value="{{ request.user.first_name }}" type="text" class="w-full mt-2 py-4 px-6 bg-gray-100 rounded-xl">
+            <input name="first_name" value="{{ request.user.first_name }}" type="text" class="w-full mt-2 py-4 px-6 bg-sky-200 dark:bg-sky-800 text-gray-800 dark:text-gray-300 rounded-xl">
         </div>
 
         <div>
             <label>Last name</label>
-            <input name="last_name" value="{{ request.user.last_name }}" type="text" class="w-full mt-2 py-4 px-6 bg-gray-100 rounded-xl">
+            <input name="last_name" value="{{ request.user.last_name }}" type="text" class="w-full mt-2 py-4 px-6 bg-sky-200 dark:bg-sky-800 text-gray-800 dark:text-gray-300 rounded-xl">
         </div>
 
         <div>
             <label>Username</label>
-            <input name="username" value="{{ request.user.username }}" type="text" class="w-full mt-2 py-4 px-6 bg-gray-100 rounded-xl">
+            <input name="username" value="{{ request.user.username }}" type="text" class="w-full mt-2 py-4 px-6 bg-sky-200 dark:bg-sky-800 text-gray-800 dark:text-gray-300 rounded-xl">
         </div>
 
         <div>
             <label>E-mail</label>
-            <input name="email" value="{{ request.user.email }}" type="email" class="w-full mt-2 py-4 px-6 bg-gray-100 rounded-xl">
+            <input name="email" value="{{ request.user.email }}" type="email" class="w-full mt-2 py-4 px-6 bg-sky-200 dark:bg-sky-800 text-gray-800 dark:text-gray-300 rounded-xl">
         </div>
 
-        <div>
-            <button class="py-4 px-6 rounded-xl text-white bg-sky-500">Submit</button>
+        <div class="py-4">
+            <button class="py-4 px-6 rounded-xl text-white bg-sky-500 hover:bg-sky-400">Submit</button>
         </div>
     </form>
 </div>
