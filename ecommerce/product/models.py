@@ -73,7 +73,7 @@ class Product(models.Model):
 
 class ImagenProducto(models.Model):
     imagen = models.ImageField(upload_to='uploads/')
-    producto = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="imagenes")
+    producto = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="imagen")
 
 class Review(models.Model):
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)

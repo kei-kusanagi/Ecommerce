@@ -9,15 +9,14 @@
             class="rounded-xl" 
             src="{% if product.image %}{{ product.image.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}"
         >
-        
-        
-        <div class="images w-full mb-6 lg:mb-0 lg:w-3/5">
-            <img 
-                class="rounded-xl" 
-                src="{% product.imagenes %}"
-            >
+        <div class="images flex flex-wrap justify-between">
+            {% for img in product.imagen.all %}
+                <img 
+                    class="rounded-xl" 
+                    src="{{ img.imagen.url }}"
+                >
+            {% endfor %}
         </div>
-        
         
     </div>
 
