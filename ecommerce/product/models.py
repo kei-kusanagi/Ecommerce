@@ -1,3 +1,4 @@
+from itertools import product
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.files import File
@@ -69,6 +70,10 @@ class Product(models.Model):
             return reviews_total / self.reviews.count()
         
         return 0
+
+class ImagenProducto(models.Model):
+    imagen = models.ImageField(upload_to='uploads/')
+    producto = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="imagenes")
 
 class Review(models.Model):
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
