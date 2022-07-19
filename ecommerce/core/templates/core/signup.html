@@ -43,16 +43,25 @@
             {% if form.errors %}
                 {% for field in form %}
                     {% for error in field.errors %}
-                        <div class="p-6 bg-red-200 text-red-800 rounded-xl">
-                            <p>{{ error|escape }}</p>
-                        </div>
+                        <script>
+                            Swal.fire({
+                                title: 'Error',
+                                text: "{{ error }}",
+                                icon: 'warning',
+                            })
+                        </script>
                     {% endfor %}
                 {% endfor %}
 
                 {% for error in form.non_field_errors %}
-                    <div class="p-6 bg-red-200 text-red-800 rounded-xl">
-                        <p>{{ error|escape }}</p>
-                    </div>
+                    <script>
+                        Swal.fire({
+                            title: 'Error',
+                            text: "Campos requeridos",
+                            icon: 'error',
+                        })
+                    </script>
+                    
                 {% endfor %}
             {% endif %}
 
@@ -62,4 +71,5 @@
         </form>
     </div>
 </div>
+
 {% endblock %}
