@@ -136,6 +136,17 @@
                 </div>
             </footer>
         </div>
+        {% if messages %}
+            {% for message in messages %}
+                <script>
+                    Swal.fire({
+                        title: "{{ message.tags }}",
+                        text: "{{ message }} {{ user }}",
+                        icon: 'success',
+                    })
+                </script>
+            {% endfor %}
+        {% endif %}
         {% block scripts %}
         {% endblock %}
         <script src="https://unpkg.com/htmx.org@1.7.0"></script>

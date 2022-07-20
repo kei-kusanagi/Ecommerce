@@ -1,3 +1,4 @@
+from django.contrib import messages
 import re
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
@@ -24,6 +25,8 @@ def signup(request):
             user = form.save()
 
             login(request, user)
+            
+            messages.success(request, 'Registro completo')
 
             return redirect('/')
     else:
