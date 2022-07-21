@@ -1,3 +1,5 @@
+from django.contrib import messages
+
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
@@ -9,7 +11,7 @@ from product.models import Product
 def add_to_cart(request, product_id):
     cart = Cart(request)
     cart.add(product_id)
-
+    
     return render(request, 'cart/partials/menu_cart.html')
 
 def cart(request):
@@ -23,12 +25,15 @@ def update_cart(request, product_id, action):
 
     if action == 'increment':
         cart.add(product_id, 1, True)
+        messages.success(request, 'producto añadido')
     else:
         cart.add(product_id, -1, True)
+        messages.warning(request,'producto eliminado')
+
     
     product = Product.objects.get(pk=product_id)
     quantity = cart.get_item(product_id)
-    
+
     if quantity:
         quantity = quantity['quantity']
 
@@ -48,7 +53,6 @@ def update_cart(request, product_id, action):
 
     response = render(request, 'cart/partials/cart_item.html', {'item': item})
     response['HX-Trigger'] = 'update-menu-cart'
-
     return response
 
 @login_required

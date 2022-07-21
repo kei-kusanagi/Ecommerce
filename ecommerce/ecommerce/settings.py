@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+
 EMAIL_HOST = 'smtp.mailtrap.io'
 EMAIL_HOST_USER = '45bf38a7b2dc69'
 EMAIL_HOST_PASSWORD = '7f9ce15c907b1c'
