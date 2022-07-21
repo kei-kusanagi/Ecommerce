@@ -9,6 +9,7 @@ from .cart import Cart
 from product.models import Product
 
 def add_to_cart(request, product_id):
+    messages.success(request, 'producto añadido')
     cart = Cart(request)
     cart.add(product_id)
     
