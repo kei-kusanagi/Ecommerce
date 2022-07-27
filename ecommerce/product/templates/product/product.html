@@ -14,15 +14,28 @@
     <div id="animation-carousel" class="relative p-4" data-carousel="slide">
         <!-- Carousel wrapper -->
         <div class="overflow-hidden relative h-56 rounded-lg md:h-96">
-             <!-- Item 1 -->
+             <!-- Item -->
+            <a id="preview">
             {% for img in product.imagen.all %}
             <div class="hidden duration-200 ease-linear" data-carousel-item>
-                <img 
-                    src="{{ img.imagen.url }}"
-                    class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="..."
-                >
+                
+                    <img 
+                        src="{{ img.imagen.url }}"
+                        class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="..."
+                    >
+                    <script>
+                        function preview(){
+                            Swal.fire({
+                                imageUrl: '{{ img.imagen.url }}',
+                            });
+                        }
+                    document.getElementById("preview").onclick = function(){
+                        preview();
+                    }
+                    </script>
             </div>
             {% endfor %}
+            </a>
         </div>
         <!-- Slider controls -->
     <button type="button" class="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
