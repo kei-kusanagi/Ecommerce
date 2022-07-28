@@ -5,35 +5,40 @@
 {% block content %}
 
 <!-- model gltf -->
-<div class="flex items-center justify-center" id="container">
+
+
+
+<div class="flex items-center justify-between flex-wrap relative p-8">
+    <!-- Import the component -->
+    <script 
+        type="module" 
+        src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+
+    <!-- Use it like any other HTML element -->
     <model-viewer 
-        src="scene.gltf"
-        alt="Model Viewer example"
-        shadow-intensity="1"
-        shadow-spoftness="0.5"
-        camera-controls
-        camera-orbit="65deg 55deg 2.5m"
-        auto-rotate
+        alt="sphere-gltf-example"
+        src="/media/3D/sphere-gltf-example.glb" 
+        shadow-intensity="2"
+        ar 
+        ar-modes="webxr scene-viewer quick-look"
+        seamless-poster shadow-intensity="1" 
+        camera-controls 
+        enable-pan
+    ></model-viewer>
+    <img 
+        class="rounded-xl" 
+        src="{% if product.image %}{{ product.image.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}"
     >
-    </model-viewer>
 </div>
-<script
-    type="module"
-    src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
-></script>
-
-
-
-
 
 
 <!-- END model gltf -->
-<div class="max-w-6xl mx-auto flex flex-wrap py-6 px-6 xl:px-0"></div>
+
+
+
+<div class="max-w-6xl mx-auto flex flex-wrap p-20"></div>
     <div class="images w-full mb-6 lg:mb-0 lg:w-3/5">
-        <img 
-            class="rounded-xl" 
-            src="{% if product.image %}{{ product.image.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}"
-        >
 
 <!-- carrusel -->
     <div id="animation-carousel" class="relative p-4" data-carousel="slide">
@@ -47,17 +52,6 @@
                             src="{{ img.imagen.url }}"
                             class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="..."
                         >
-                        <!-- <script>
-                            function preview(){
-                                Swal.fire({
-                                    imageUrl: '{{ img.imagen.url }}',
-
-                                });
-                            }
-                        document.getElementById("preview").onclick = function(){
-                            preview();
-                        }
-                        </script> -->
                     </div>
                 </a>
             {% endfor %}
