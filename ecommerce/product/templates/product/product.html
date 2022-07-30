@@ -16,16 +16,17 @@
     ></script>
 
     <!-- Use it like any other HTML element -->
-    <model-viewer 
-        alt="sphere-gltf-example"
-        src="/media/3D/sphere-gltf-example.glb" 
-        shadow-intensity="2"
-        ar 
-        ar-modes="webxr scene-viewer quick-look"
-        seamless-poster shadow-intensity="1" 
-        camera-controls 
-        enable-pan
-    ></model-viewer>
+    {% for 3d in product.modelo.all %}
+        <model-viewer 
+            camera-controls 
+            src="{{ 3d.modelo.url }}"
+            shadow-intensity="3"
+            camera-controls 
+            enable-pan
+            ar-modes="webxr scene-viewer quick-look" 
+            style="background-color: unset;"
+        ></model-viewer>
+    {% endfor %}
     <img 
         class="rounded-xl" 
         src="{% if product.image %}{{ product.image.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}"
