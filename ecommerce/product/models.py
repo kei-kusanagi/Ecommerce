@@ -79,6 +79,10 @@ class ModeloProducto(models.Model):
     modelo = models.FileField(upload_to = '3D/')
     producto = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="modelo")
 
+class DesignProducto(models.Model):
+    design = models.FileField(upload_to = '3D/')
+    producto = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="design")
+
 
 class Review(models.Model):
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)

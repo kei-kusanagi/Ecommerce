@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Product, ImagenProducto, ModeloProducto
+from .models import Category, Product, ImagenProducto, ModeloProducto, DesignProducto
 
 class ImagenProductoAdmin(admin.TabularInline):
     model = ImagenProducto
@@ -8,10 +8,14 @@ class ImagenProductoAdmin(admin.TabularInline):
 class ModeloProductoAdmin(admin.TabularInline):
     model = ModeloProducto
 
+class DesignProductoAdmin(admin.TabularInline):
+    model = DesignProducto
+
 class ProductoAdmin(admin.ModelAdmin):
     inlines = [
         ImagenProductoAdmin,
-        ModeloProductoAdmin
+        ModeloProductoAdmin,
+        DesignProductoAdmin
     ]
 
 admin.site.register(Category)
