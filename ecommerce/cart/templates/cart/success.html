@@ -25,20 +25,20 @@
                         <div class="w-3/4 pl-6">
                             <div class="flex justify-between">
                                 <a href="#" class="text-lg text-gray-700 dark:text-gray-200">{{ item.product.name }}</a>
-
                                 <p class="mb-6 pt-1 text-gray-700 dark:text-gray-200">${{ item.get_total_price }}</p>
                             </div>
 
                             <hr>
-
                             <div class="mt-6 text-gray-700 dark:text-gray-200">
                                 Quantity: {{ item.quantity }}
                             </div>
                         </div>
                     </div>
+                    {% for des in item.product.design.all %}
+                        <a href="{{ des.design.url }}" target="_blank" class="bg-red-600 hover:shadow-lg text-white rounded-xl p-4">Descargar diseño</a>
+                    {% endfor %}
                 {% endfor %}
-            </div>
-
+        </div>
             <div>
                 <p class="text-lg text-gray-700 dark:text-gray-200">Date: {{ user.orders.first.created_at }}</p>
                 <p class="text-lg text-gray-700 dark:text-gray-200">Total: ${{ user.orders.first.get_total_price }}</p>

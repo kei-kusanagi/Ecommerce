@@ -48,6 +48,9 @@
                             </div>
                         </div>
                     </div>
+                    {% for des in item.product.design.all %}
+                        <a href="{{ des.design.url }}" target="_blank" class="bg-red-600 hover:shadow-lg text-white rounded-xl p-4">Descargar diseño</a>
+                    {% endfor %}
                 {% endfor %}
             </div>
 
