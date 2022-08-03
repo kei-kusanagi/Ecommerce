@@ -1,9 +1,11 @@
 from itertools import product
+from multiprocessing import context
 from django.contrib import messages
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+import requests
 
 from .cart import Cart
 
@@ -23,26 +25,15 @@ def add_to_cart(request, product_id):
 def cart(request):
     return render(request, 'cart/cart.html')
 
-# def send_email(request, us_email):
-#     # context = {'us_email': us_email}
-#     us_email = request.user.email
-#     template = get_template('cart/partials/purchase_mail.html')
-#     content = template.render(us_email)
-    
-#     email = EmailMultiAlternatives(
-#             'Un correo de prueba',
-#             'Correo de compra',
-#             settings.EMAIL_HOST_USER,
-#             [us_email],
-#         )
-
-#     email.attach_alternative(content, 'text/html')
-#     email.send()
-
 def success(request):
     us_email = request.user.email
+    user = request.user.first_name
     template = get_template('cart/partials/purchase_mail.html')
-    content = template.render()
+    # links = request.item.product.design.all
+    # links = Product.product.design.url
+    # print(links)
+    context = {'us_email': us_email, 'user': user}
+    content = template.render(context)
     
     email = EmailMultiAlternatives(
             'Un correo de prueba',
@@ -52,7 +43,7 @@ def success(request):
         )
 
     email.attach_alternative(content, 'text/html')
-    email.send()
+    # email.send()
     
     return render(request, 'cart/success.html')
 
