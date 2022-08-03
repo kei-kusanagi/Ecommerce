@@ -1,3 +1,4 @@
+from itertools import product
 from django.contrib import messages
 
 from django.conf import settings
@@ -7,6 +8,10 @@ from django.shortcuts import render
 from .cart import Cart
 
 from product.models import Product
+
+from django.template.loader import get_template
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
 
 def add_to_cart(request, product_id):
     messages.success(request, 'producto añadido a tu 🛒')
@@ -18,7 +23,37 @@ def add_to_cart(request, product_id):
 def cart(request):
     return render(request, 'cart/cart.html')
 
+# def send_email(request, us_email):
+#     # context = {'us_email': us_email}
+#     us_email = request.user.email
+#     template = get_template('cart/partials/purchase_mail.html')
+#     content = template.render(us_email)
+    
+#     email = EmailMultiAlternatives(
+#             'Un correo de prueba',
+#             'Correo de compra',
+#             settings.EMAIL_HOST_USER,
+#             [us_email],
+#         )
+
+#     email.attach_alternative(content, 'text/html')
+#     email.send()
+
 def success(request):
+    us_email = request.user.email
+    template = get_template('cart/partials/purchase_mail.html')
+    content = template.render()
+    
+    email = EmailMultiAlternatives(
+            'Un correo de prueba',
+            'Correo de compra',
+            'settings.EMAIL_HOST_USER',
+            [us_email],
+        )
+
+    email.attach_alternative(content, 'text/html')
+    email.send()
+    
     return render(request, 'cart/success.html')
 
 def update_cart(request, product_id, action):
