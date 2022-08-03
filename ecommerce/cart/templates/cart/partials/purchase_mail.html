@@ -3,12 +3,10 @@
 
     </head>
     <body>
-        <h1>Hola {{ us_email }} mundo desde un correo electronico</h1>
+        <h1>Hola {{ user }} muchas gracias por su compra</h1>
         <p>
             Este es su enlace de descarga 
         </p>
-        {% for des in item.product.design.all %}
-            <a href="{{ des.design.url }}" target="_blank" class="bg-red-600 hover:shadow-lg text-white rounded-xl p-4">Descargar diseño</a>
-        {% endfor %}
+        <a href="{{ links }}">Aqui deveria ir el enlace {{ links }}</a>
     </body>
 </html>
