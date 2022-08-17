@@ -6,7 +6,7 @@
 
 <!-- model glb -->
 
-<div class="flex items-center justify-between flex-wrap relative space-x-6 p-8">
+
     <!-- Import the component -->
     <script 
         type="module" 
@@ -22,14 +22,14 @@
             camera-controls 
             enable-pan
             ar-modes="webxr scene-viewer quick-look" 
-            style="background-color: unset;"
+            style="background-color: unset; width: 800px; height: 400px; position: relative;"
         ></model-viewer>
     {% endfor %}
     <img 
         class="rounded-xl" 
         src="{% if product.image %}{{ product.image.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}"
     >
-</div>
+
 
 
 <!-- END model gltf -->
