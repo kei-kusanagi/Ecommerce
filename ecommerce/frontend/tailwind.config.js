@@ -24,6 +24,9 @@ module.exports = {
     // content: contentPaths,
     darkMode: 'class',
     theme: {
+        container: {
+            center:true,
+        },
         extend: {},
     },
     plugins: [],
