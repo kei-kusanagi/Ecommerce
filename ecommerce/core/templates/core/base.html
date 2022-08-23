@@ -19,7 +19,7 @@
         <div class="bg-white dark:bg-gray-900">
         <div class="transition-colors duration-300 p-2 py-4">
             <nav class="border-b border-gray-300">
-                <div class="text-blue-500 flex items-center justify-between max-w-6xl px-6 py-2 mx-auto xl:px-0">
+                <div class="text-blue-500 flex justify-between max-w-6xl px-6 py-2 mx-auto xl:px-0">
                     <div class="flex items-center space-x-6 menu-left">
                         <a href="{% url 'frontpage' %}" class="py-4 text-lg font-semibold text-blue-500">VelvetIT®</a>
 
@@ -30,7 +30,7 @@
                         </ul>
                     </div>
 
-                    <div class="flex text-center space-x-4 menu-right">
+                    <div class="flex space-x-4 menu-right">
                         <div>
                             <span class="space-x-4 text-gray-800 dark:text-gray-300">
                         
@@ -49,7 +49,7 @@
                             </span> 
                             
                         </div>
-                                                
+
                         <div
                             hx-get="{% url 'hx_menu_cart' %}"
                             hx-trigger="update-menu-cart from:body"

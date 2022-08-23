@@ -3,8 +3,8 @@
 {% block title %}Shop{% endblock %}
 
 {% block content %}
-<div class="max-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0">
-    <div class="filters w-full lg:w-1/4">
+<div class="mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0">
+    <div class="filters w-full lg:w-1/4 max-w-6xl">
         <h3 class="mb-3 text-xl uppercase text-gray-800 dark:text-white">Search</h3>
 
         <form method="get" action=".">
@@ -29,7 +29,7 @@
         </ul>
     </div>
 
-    <div class="products w-full lg:w-3/4 -mt-4 flex flex-wrap text-gray-800 dark:text-white">
+    <div class="products w-full lg:w-3/4 mt-6 flex flex-wrap px-8 text-gray-800 dark:text-white">
         {% for product in products %}
             {% include 'product/partials/product_list_item.html' %}
         {% endfor %}
