@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from distutils.command.config import config
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,19 +23,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1je&!n%@^+t0rn-i7zi_p(gk7+2$vqfgrra@a(gecg9&g#9l1e'
+SECRET_KEY = config('env_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+debug_env=bool(config('env_DEBUG'))
+DEBUG = debug_env
+#DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = '45bf38a7b2dc69'
-EMAIL_HOST_PASSWORD = '7f9ce15c907b1c'
-EMAIL_PORT = '2525'
+# .env llaves de mailtrap
+EMAIL_HOST = config('env_EMAIL_HOST')
+EMAIL_HOST_USER = config('env_EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('env_EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('env_EMAIL_PORT')
 
 EMAIL_USE_TLS = True
 
@@ -44,12 +49,10 @@ LOGIN_URL = '/login/'
 SESSION_COOKIE_AGE = 86400
 CART_SESSION_ID = 'cart'
 
-STRIPE_API_KEY_PUBLISHABLE = 'pk_test_51L37LyGtLX1CnoHKzOcY3Xh6Ly4ca2pBI8QcbSdhxVHb3Wnmqke4JVhoI0TKtZ46NbodrsLYuZc5vLf43Xsw03n800v7w3IhXV'
-STRIPE_API_KEY_HIDDEN = 'sk_test_51L37LyGtLX1CnoHKsOMyH4gQCLWrbBZKNB9OxDgOrKHJG5v0mR8xt54XgT28HdrUcgFDbgTDk8ZQIIr3ohQiKgHe004vLVsuxK'
+# .env llaves de STRIPE
+STRIPE_API_KEY_PUBLISHABLE = config('env_STRIPE_API_KEY_PUBLISHABLE')
+STRIPE_API_KEY_HIDDEN = config('env_STRIPE_API_KEY_HIDDEN')
 
-# from decouple import config
-# STRIPE_API_KEY_PUBLISHABLE = config('STRIPE_API_KEY_PUBLISHABLE')
-# STRIPE_API_KEY_HIDDEN = config('STRIPE_API_KEY_HIDDEN')
 
 # Application definition
 
