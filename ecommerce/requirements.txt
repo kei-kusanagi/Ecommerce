@@ -11,3 +11,4 @@ sqlparse==0.4.2
 stripe==3.2.0
 tzdata==2022.1
 urllib3==1.26.9
+python-webpack-boilerplate==1.0.0

@@ -1,3 +1,4 @@
+from django.contrib import messages
 import re
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
@@ -13,6 +14,9 @@ def frontpage(request):
 
     return render(request, 'core/frontpage.html', {'products': products})
 
+def contact(request):
+    return render(request, 'contact/contact.html')
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -21,6 +25,8 @@ def signup(request):
             user = form.save()
 
             login(request, user)
+            
+            messages.success(request, 'Registro completo')
 
             return redirect('/')
     else:

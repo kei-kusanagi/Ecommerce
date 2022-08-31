@@ -1,3 +1,4 @@
+from itertools import product
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.files import File
@@ -47,7 +48,7 @@ class Product(models.Model):
             else:
                 return 'https://via.placeholder.com/240x240x.jpg'
     
-    def make_thumbnail(self, image, size=(300, 300)):
+    def make_thumbnail(self, image, size=(240, 240)):
         img = Image.open(image)
         img.convert('RGB')
         img.thumbnail(size)
@@ -69,6 +70,19 @@ class Product(models.Model):
             return reviews_total / self.reviews.count()
         
         return 0
+
+class ImagenProducto(models.Model):
+    imagen = models.ImageField(upload_to='uploads/')
+    producto = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="imagen")
+
+class ModeloProducto(models.Model):
+    modelo = models.FileField(upload_to = '3D/')
+    producto = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="modelo")
+
+class DesignProducto(models.Model):
+    design = models.FileField(upload_to = '3D/')
+    producto = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="design")
+
 
 class Review(models.Model):
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)

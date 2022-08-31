@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+    
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+    <div class="bg-sky-400 p-4 rounded-xl">
+        <h1 class="text-gray-800">Contact</h1>
+        <form method="post" action=".">
+            {% csrf_token %}
+            <div class="p-2"> 
+                <span class="text-gray-800 dark:text-gray-500">{{ form.as_p}}</span>
+            </div>
+            <button class="bg-sky-500 hover:bg-sky-700 text-white rounded-xl p-4">Submit</button>
+        </form>
+    </div>
+{% endblock %}
