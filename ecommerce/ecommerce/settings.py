@@ -27,16 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('env_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-IS_HEROKU = "DYNO" in os.environ
 
-if IS_HEROKU:
-    ALLOWED_HOSTS = ["*"]
-else:
-    ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
-# SECURITY WARNING: don't run with debug turned on in production!
-if not IS_HEROKU:
-    DEBUG = True
+DEBUG = False
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
