@@ -26,9 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('env_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-debug_env=bool(config('env_DEBUG'))
-DEBUG = debug_env
-#DEBUG = False
+
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -81,6 +80,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     
 ]
 
@@ -156,7 +156,11 @@ INTERNAL_IPS = [
  
 ]
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "frontend/build"),
 ]
@@ -165,6 +169,7 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 WEBPACK_LOADER = {
     'MANIFEST_FILE': os.path.join(BASE_DIR, "frontend/build/manifest.json"),
 }
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
