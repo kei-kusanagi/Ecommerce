@@ -1,6 +1,5 @@
 .env
 ecommerce/env
-run.sh
 # *.pyc
 
 # Created by https://www.toptal.com/developers/gitignore/api/django,node
