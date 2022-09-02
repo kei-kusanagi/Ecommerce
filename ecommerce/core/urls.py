@@ -8,8 +8,6 @@ from contact.views import contact
 
 from django.views.generic import TemplateView
 
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     path('', frontpage, name='frontpage'),
@@ -22,4 +20,4 @@ urlpatterns = [
     path('shop/', shop, name='shop'),
     path('shop/<slug:slug>/', product, name='product'),
     path('contact/', contact, name='contact'),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
