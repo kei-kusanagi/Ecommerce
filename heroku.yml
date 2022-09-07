@@ -1,6 +1,10 @@
 build:
   docker:
+<<<<<<< HEAD
     web: Dockerfile
 
 "postinstall": "npm run build",
 "start": "node server.js"
+=======
+    web: Dockerfile
+>>>>>>> parent of 068f614 (Add heroku.yml)
