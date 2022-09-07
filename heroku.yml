@@ -1,3 +1,6 @@
 build:
   docker:
     web: Dockerfile
+
+"postinstall": "npm run build",
+"start": "node server.js"
