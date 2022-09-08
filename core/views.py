@@ -72,4 +72,3 @@ def shop(request):
     }
 
     return render(request, 'core/shop.html', context)
-    return render(request, 'core/shop2.html', context)

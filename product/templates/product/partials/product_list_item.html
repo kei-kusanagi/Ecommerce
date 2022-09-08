@@ -1,52 +1,26 @@
-<div class="w-1/4 xl:w-1/3 p-6">
-    <a href="{% url 'product' product.slug %}">
-        <img src="{{ product.get_thumbnail }}" class="w-full rounded-xl hover:shadow-lg">
-    </a>
-
-    <div class="py-4 flex justify-between">
-        <a class="p-8 dark:text-gray-300" href="{% url 'product' product.slug %}">{{ product.name }}</a>
-
-        <a 
-            href="#" 
-            hx-get="{% url 'add_to_cart' product.id %}"
-            hx-target="#menu-cart-button"
-            hx-swap="outerHTML"
-            
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sky-500 dark:text-sky-300 hover:text-purple-800 dark:hover:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-        </a>
-    </div>
-
-    <p class="py-1 text-gray-400 dark:text-gray-300">${{ product.get_display_price }}</p>
-</div>
-
-
-<div class="bg-white">
+<div class="">
     <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 class="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
-    
         <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            {% for product in products %}
             <div class="group relative">
-            <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                <img src="{{ product.get_thumbnail }}" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-            </div>
-            <div class="mt-4 flex justify-between">
-                <div>
-                <h3 class="text-sm text-gray-700">
-                    <a href="{% url 'product' product.slug %}">
-                    <span aria-hidden="true" class="absolute inset-0"></span>
-                    <a class="p-8 dark:text-gray-300">{{ product.name }}</a>
-                    </a>
-                </h3>
                 
-                </div>
-                <p class="text-sm font-medium text-gray-900">${{ product.get_display_price }}</p>
+                    <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
+                        <img src="{{ product.image.url }}" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                    </div>
+                    <div class="mt-4 flex justify-between">
+                        <div>
+                            <h3 class="text-sm text-gray-300">
+                                <a href="{% url 'product' product.slug %}">
+                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                <a class="mt-1 text-sm dark:text-gray-400">{{ product.name }}</a>
+                                </a>
+                            </h3>
+                        </div>
+                        <p class="text-sm p-4 font-medium text-gray-300">${{ product.get_display_price }}</p>
+                    </div>
+                
             </div>
-            </div>
-    
-            <!-- More products... -->
-        </div>
+            {% endfor %}
         </div>
     </div>
+</div>

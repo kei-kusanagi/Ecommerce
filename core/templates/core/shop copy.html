@@ -31,9 +31,11 @@
     </div>
 
     <div class="products w-full lg:w-3/4 mt-6 flex flex-wrap px-8 text-gray-800 dark:text-white">
-        
-        {% include 'product/partials/product_list_item.html' %}
-        
+        {% for product in products %}
+            {% include 'product/partials/product_list_item.html' %}
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
+
+<!-- ### Version Viejita ### -->
