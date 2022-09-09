@@ -3,136 +3,162 @@
 {% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
-<div class="container max-w-6xl mx-auto flex flex-wrap">
-    <script 
-        type="module" 
-        src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
-    ></script>
-
-    <!-- Use it like any other HTML element -->
-    <div class="grid grid-cols-2 p-8 gap-x-4">
-        {% for 3d in product.modelo.all %}
-            <model-viewer 
-                camera-controls 
-                src="{{ 3d.modelo.url }}"
-                shadow-intensity="3"
-                camera-controls 
-                enable-pan
-                ar-modes="webxr scene-viewer quick-look" 
-                style="background-color: unset; width: 100%; height: 100%; position: relative;"
-            ></model-viewer>
-        {% endfor %}
-        <img 
-            class="rounded-xl" 
-            src="{% if product.image %}{{ product.image.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}"
-        >
-    </div>
-</div>
-
-
-<!-- carrusel -->
-    <div class="images">
-        <div id="animation-carousel" class="relative p-8 w-4/5 flex justify-center" data-carousel="slide">
-            <!-- Carousel wrapper -->
-            <div class="overflow-hidden relative rounded-lg h-96 w-3/4">
-                <!-- Item -->
-                {% for img in product.imagen.all %}
-                    <a href="{{ img.imagen.url }}" id="preview" target="_blank">
-                        <div class="hidden duration-200 ease-linear" data-carousel-item>
-                            <img 
-                                src="{{ img.imagen.url }}"
-                                class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="..."
-                            >
-                        </div>
-                    </a>
-                {% endfor %}
+<div class="bg-gray-400">
+    <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
+            <!-- Image gallery -->
+            <div class="flex flex-col-reverse">
+            <!-- Image selector -->
+            <div class="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
+                <div class="grid grid-cols-4 gap-6" aria-orientation="horizontal" role="tablist">
+                <button id="tabs-1-tab-1" class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4" aria-controls="tabs-1-panel-1" role="tab" type="button">
+                    <span class="sr-only"> Angled view </span>
+                    
+                        {% for img in product.imagen.all %}
+                        <span class="absolute inset-0 overflow-hidden rounded-md"></span>
+                            <img src="{{ img.imagen.url }}" alt="Angled front view with bag zipped and handles upright." class="h-full w-full object-cover object-center sm:rounded-lg">
+                        </span>
+                        {% endfor %}    
+                    
+                    <!-- Selected: "ring-indigo-500", Not Selected: "ring-transparent" -->
+                    <span class="ring-transparent pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2" aria-hidden="true"></span>
+                </button>
+    
+                <!-- More images... -->
+                </div>
             </div>
-                <!-- Slider controls -->
-            <button type="button" class="flex  absolute top-0 left-0 z-30 items-center px-8 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
-                <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-sky-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                    <svg aria-hidden="true" class="w-5 h-5 text-sky-500 sm:w-6 sm:h-6 dark:text-sky-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                    <span class="sr-only">Previous</span>
-                </span>
-            </button>
-            <button type="button" class="flex absolute top-0 right-0 z-30 items-center px-8 h-full cursor-pointer group focus:outline-none" data-carousel-next>
-                <span class="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-sky-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                    <svg aria-hidden="true" class="w-5 h-5 text-sky-500 sm:w-6 sm:h-6 dark:text-sky-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    <span class="sr-only">Next</span>
-                </span>
-            </button>
-        </div>
-        <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
-    </div>
-<!-- carrusel -->
-
-    <div class="information w-full lg:w-2/5 lg:p-6">
-        <h1 class="text-gray-800 dark:text-white text-2xl">{{ product.name }}</h1>
-
-        <p class="mt-1 text-gray-800 dark:text-white">${{ product.get_display_price }}</p>
-
-        {% if product.get_rating > 0 %}
-            <p class="mt-1 text-gray-800 dark:text-white">Rating: {{ product.get_rating }} / 6</p>
-        {% endif %}
-
-        {% if product.description %}
-            <p class="mt-6 text-gray-800 dark:text-white">
-                {{ product.description }}
-            </p>
-        {% endif %}
-
-        <a 
-            href="#" 
-            class="mt-6 inline-block px-8 py-4 rounded-xl bg-sky-500 text-white hover:bg-sky-700"
-            hx-get="{% url 'add_to_cart' product.id %}"
-            hx-target="#menu-cart-button"
-            hx-swap="outerHTML"
-        >
-            Add to cart
-        </a>
-    </div>
-
-    <div class="w-full mt-">
-        <h2 class="py-4 text-xl text-gray-800 dark:text-gray-200">Reviews</h2>
-
-        {% if request.user.is_authenticated %}
-            <form method="post" action="." class="mb-2 p-4 text-gray-800 dark:text-gray-200 bg-gray-300 dark:bg-gray-700 rounded-xl">
-                {% csrf_token %}
-
-                <div class="text-gray-800 dark:text-gray-500">
-                    <label class="text-gray-800 dark:text-gray-200">Rating</label><br>
-                    <select name="rating">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3" selected>3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
+            
+            <div class="aspect-w-1 aspect-h-1 w-full">
+                <!-- Tab panel, show/hide based on tab state. -->
+                <div id="tabs-1-panel-1" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
+                    <div class="aspect-w-1 aspect-h-1 w-full">
+                        <!-- Tab panel, show/hide based on tab state. -->
+                        <div id="tabs-1-panel-1" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
+                            <img src="{{ product.image.url }}" alt="Angled front view with bag zipped and handles upright." class="h-full w-full object-cover object-center sm:rounded-lg">
+                        </div>
+                    </div>
                 </div>
-
-                <div>
-                    <label>Comment</label><br>
-                    <textarea 
-                        name="content"
-                        class="p-4 placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Write your review here..."
-
-                    ></textarea>
+                <!-- More images... -->
+            </div>
+            </div>
+    
+            <!-- Product info -->
+            <div class="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ product.name }}</h1>
+    
+            <div class="mt-3">
+                <h2 class="sr-only">Product information</h2>
+                <p class="text-3xl tracking-tight text-gray-900">${{ product.get_display_price }}</p>
+            </div>
+    
+            <div class="mt-6">
+                <h3 class="sr-only">Description</h3>
+    
+                <div class="space-y-6 text-base text-gray-700">
+                <p>{{ product.description }}</p>
                 </div>
-
-                <div>
-                    <button class="inline-block px-4 py-2 rounded-xl bg-sky-500 text-white hover:bg-sky-700">Submit</button>
+            </div>
+    
+            <form class="mt-6">
+                <div class="sm:flex-col1 mt-10 flex">
+                    <a 
+                        href="#" 
+                        class="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full"
+                        hx-get="{% url 'add_to_cart' product.id %}"
+                        hx-target="#menu-cart-button"
+                        hx-swap="outerHTML"
+                    >Add to cart</a>
                 </div>
             </form>
-        {% endif %}
+    
+            <section aria-labelledby="details-heading" class="mt-12">
+                <h2 id="details-heading" class="sr-only">Additional details</h2>
+                <div class="divide-y divide-gray-200 border-t"></div>
+            </section>
+        </div>
+    </div>
+    
+            <!-- More sections... -->
+                <!-- Reviews -->
+                    <div class="mt-3">
+                        <h3 class="sr-only">Reviews</h3>
+                        <div class="flex items-center">
+                            <!--
+                            Heroicon name: mini/star
+            
+                            Active: "text-indigo-500", Inactive: "text-gray-300"
+                            -->
+                            {% if product.get_rating > 0 %}
+                                <p class="mt-1 text-gray-800 dark:text-white">Rating: {{ product.get_rating }} / 6</p>
+                            {% endif %}
+                            <!-- <svg class="h-5 w-5 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                            </svg> -->
+            
+                            <!-- Heroicon name: mini/star -->
+                            <!-- <svg class="h-5 w-5 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                            </svg>
+             -->
+                            <!-- Heroicon name: mini/star -->
+                            <!-- <svg class="h-5 w-5 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                            </svg> -->
+            
+                            <!-- Heroicon name: mini/star -->
+                            <!-- <svg class="h-5 w-5 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                            </svg> -->
+            
+                            <!-- Heroicon name: mini/star -->
+                            <!-- <svg class="h-5 w-5 flex-shrink-0 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                            </svg> -->
+                        </div>
+                        {% if request.user.is_authenticated %}
+                            <form method="post" action="." class="mb-2 p-4 text-gray-800 dark:text-gray-200 bg-gray-300 dark:bg-gray-700 rounded-xl">
+                                {% csrf_token %}
 
-        {% for review in product.reviews.all %}
-            <div class="px-4 py-6 text-gray-800 dark:text-white bg-gray-300 dark:bg-gray-700 rounded-xl mb-4">
-                <strong>Rating:</strong> {{ review.rating }}/6<br>
-                <strong>Date:</strong> {{ review.created_at|date:"Y-m-d" }}<br>
-                <strong>Comment:</strong><br>
-                {{ review.content }}
+                                <div class="text-gray-800 dark:text-gray-500">
+                                    <label class="text-gray-800 dark:text-gray-200">Rating</label><br>
+                                    <select name="rating">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3" selected>3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label>Comment</label><br>
+                                    <textarea 
+                                        name="content"
+                                        class="p-4 placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Write your review here..."
+
+                                    ></textarea>
+                                </div>
+
+                                <div>
+                                    <button class="inline-block px-4 py-2 rounded-xl bg-sky-500 text-white hover:bg-sky-700">Submit</button>
+                                </div>
+                            </form>
+                        {% endif %}
+
+                        {% for review in product.reviews.all %}
+                            <div class="px-4 py-6 text-gray-800 dark:text-white bg-gray-300 dark:bg-gray-700 rounded-xl mb-4">
+                                <strong>Rating:</strong> {{ review.rating }}/6<br>
+                                <strong>Date:</strong> {{ review.created_at|date:"Y-m-d" }}<br>
+                                <strong>Comment:</strong><br>
+                                {{ review.content }}
+                            </div>
+                        {% endfor %}
+                        <p class="sr-only">4 out of 5 stars</p>
+                        </div>
+                    </div>
             </div>
-        {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}
