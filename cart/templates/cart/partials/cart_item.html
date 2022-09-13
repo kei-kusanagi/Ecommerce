@@ -1,37 +1,43 @@
 {% if item %}
-    <div class="product mb-6 flex pr-6" id="cart-item-{{ item.product.id }}">
-        <a href="#" class="w-1/4">
-            <img class="hover:shadow-lg rounded-xl" src="{{ item.product.get_thumbnail }}">
-        </a>
+<div class="product" id="cart-item-{{ item.product.id }}">
+    <ul role="list" class="divide-y divide-gray-200 border-t border-b border-gray-200">
+        <li class="flex py-6 sm:py-10">
+        <div class="flex-shrink-0">
+            <img src="{{ item.product.get_thumbnail }}" alt="producto" class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48">
+        </div>
 
-        <div class="w-3/4 pl-6">
-            <div class="flex justify-between">
-                <a href="#" class="text-lg dark:text-gray-300">{{ item.product.name }}</a>
-
-                <span class="mb-6 pt-1 text-gray-400 dark:text-gray-300">${{ item.total_price }}</span>
+        <div class="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+            <div class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+            <div>
+                <div class="flex justify-between">
+                <h3 class="text-sm">
+                    <a href="#" class="font-medium text-gray-700 hover:text-gray-800">{{ item.product.name }}</a>
+                </h3>
+                </div>
+                
+                <p class="mt-1 text-sm font-medium text-gray-900">${{ item.total_price }}</p>
             </div>
 
-            <hr>
-
-            <div class="quantity mt-6 flex items-center space-x-4">
-                <buton 
-                    class="px-4 bg-sky-500 rounded-xl"
-                    hx-get="{% url 'update_cart' item.product.id 'decrement' %}"
-                    hx-target="#cart-item-{{ item.product.id }}"
-                    hx-swap="outerHTML"
-                >
-                    -
-                </buton>
-                <span class="px-4 rounded-xl text-gray-500 dark:text-gray-300 bg-gray-300 dark:bg-gray-700">{{ item.quantity }}</span>
-                <buton 
-                    class="px-4 bg-sky-500 rounded-xl"
-                    hx-get="{% url 'update_cart' item.product.id 'increment' %}"
-                    hx-target="#cart-item-{{ item.product.id }}"
-                    hx-swap="outerHTML"
-                >
-                    +
-                </buton>
+            <div class="mt-4 sm:mt-0 sm:pr-9">
+                <div class="absolute top-0 right-0">
+                    <button 
+                        class="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"                
+                        hx-get="{% url 'update_cart' item.product.id 'decrement' %}"
+                        hx-target="#cart-item-{{ item.product.id }}"
+                        hx-swap="outerHTML"
+                    >
+                        
+                        <span class="sr-only">Remove</span>
+                        <!-- Heroicon name: mini/x-mark -->
+                        <svg class="h-5 w-5 hover:text-red-500 hover:h-7 hover:w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
             </div>
         </div>
-    </div>
+        </li>
+    </ul>
+</div>
 {% endif %}
